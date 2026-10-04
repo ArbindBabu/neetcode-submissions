@@ -1,10 +1,13 @@
 public class Solution {
-    public int MinCostClimbingStairs(int[] cost) {
-        
-        for(int i = cost.Length - 3; i >= 0; i--)
+    public int Rob(int[] nums) {
+        int rob1 = 0, rob2 = 0;
+        foreach(int num in nums)
         {
-            cost[i] += Math.Min(cost[i + 1], cost[i + 2]);
+            int temp = Math.Max(num + rob1, rob2);
+            rob1 = rob2;
+            rob2 = temp;
+                    
         }
-        return Math.Min(cost[0],cost[1]);
+        return rob2;
     }
 }
