@@ -9,21 +9,27 @@
  *     }
  * }
  */
-
+ 
 public class Solution {
-    public bool HasCycle(ListNode head) {
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2) {
         
-        ListNode slow = head;
-        ListNode fast = head;
-
-        while(fast != null && fast.next != null)
+        if(list1 == null)
         {
-            fast = fast.next.next;
-            slow = slow.next;
-            
-            if(slow.Equals(fast))
-             return true;            
+            return list2;
         }
-        return false;
+        if(list2 == null)
+        {
+            return list1;
+        }
+        if(list1.val <= list2.val)
+        {
+            list1.next = MergeTwoLists(list1.next, list2);
+            return list1;
+        }
+        else{
+             list2.next = MergeTwoLists(list2.next, list1);
+             return list2;
+        }
+        
     }
 }
