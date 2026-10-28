@@ -1,16 +1,18 @@
 public class Solution {
-    public bool IsAnagram(string s, string t) {
-
-        if(s.Length != t.Length)
-        {
-            return false;
-        }
-        char[] sArray = s.ToCharArray();
-        char[] tArray = t.ToCharArray();
+    public bool hasDuplicate(int[] nums) {
         
-        Array.Sort(sArray);
-        Array.Sort(tArray);
-
-        return new string(sArray) == new string(tArray);
+        int i ,j;
+        int n = nums.Length;
+        for(i = 0; i <n; i++)
+        {
+            for(j = i+1; j <n; j++)
+            {
+                if(nums[i] == nums[j])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
