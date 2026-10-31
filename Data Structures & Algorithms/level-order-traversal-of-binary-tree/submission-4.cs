@@ -11,26 +11,26 @@
  *     }
  * }
  */
-
+ 
 public class Solution {
-    public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        
-        TreeNode res = root;
-        while(res != null)
+    List<List<int>> res = new List<List<int>>();
+    public List<List<int>> LevelOrder(TreeNode root) {
+            
+            dfs(root,0);
+            return res;
+    }
+    private void dfs(TreeNode node, int depth)
+    {
+        if(node == null)
         {
-            if(p.val > res.val && q.val > res.val)
-            {
-                res = res.right;
-            }
-            else if(p.val < res.val && q.val < res.val)
-            {
-                res = res.left;
-            }
-            else{
-                return res;
-            }
-
+            return;
         }
-        return null;
+        if(res.Count == depth)
+        {
+            res.Add(new List<int>());
+        }
+        res[depth].Add(node.val);
+        dfs(node.left, depth + 1);
+        dfs(node.right, depth + 1);
     }
 }
