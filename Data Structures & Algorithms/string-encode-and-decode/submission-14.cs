@@ -1,26 +1,32 @@
 public class Solution {
-    public int[] TopKFrequent(int[] nums, int k) {
-        
-        Dictionary<int,int> map = new Dictionary<int,int>();
-        foreach(int num in nums)
-        {
-            if(map.ContainsKey(num))
-            {
-                map[num]++;
-            }
-            else
-            {
-                map[num] = 1;
-            }
-        }
-        var list = map.ToList();
-        list.Sort((a,b) => b.Value.CompareTo(a.Value));
 
-        int[] result = new int[k];
-        for(int i = 0; i <k; i++)
+    public string Encode(IList<string> strs) {
+        StringBuilder res = new StringBuilder();
+        foreach(string s in strs)
         {
-            result[i] = list[i].Key;
+            res.Append(s.Length).Append('#').Append(s);
         }
-        return result;
+        return res.ToString();
     }
+
+    public List<string> Decode(string s) {
+
+        List<string> res = new List<string>();
+        int i = 0;
+        while(i < s.Length)
+        {
+            int j = i;
+
+            while(s[j] != '#')
+            {
+                j++;
+            }
+            int length = int.Parse(s.Substring(i,j-i));
+            i = j +1;
+            j = i + length;
+            res.Add(s.Substring(i,length));
+            i = j;
+        }
+        return res;
+   }
 }
